@@ -1,0 +1,9 @@
+data\example.int, ex_, 1
+keys\example.key, Key
+==============================
+Key$,     Key Field,    c    6
+Name$,    First Name,   v   64
+Last$,    Last Name,    v   64
+Age,      Age,          zd   3
+Birthday, Birth Date,   bh   3
+Packed,   PD Example,   pd 3.1
