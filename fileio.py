@@ -1,5 +1,4 @@
 from formats import bh_format, pd_format, zd_format, c_format, v_format, x_format
-import sys
 from typing import Callable, Dict, IO, Iterator, List, Tuple, Union
 from os import path
 
@@ -87,7 +86,7 @@ class BRFile:
                     for name, start, end, decimals, convert, _ in self.fileio.layout:
                         try:
                             record[name] = convert(line[start:end], decimals)
-                        except Exception as e:
+                        except Exception:
                             record[name] = None
                     self.records[rec] = record
                 if len(line) == reclen:
@@ -147,12 +146,3 @@ class BRFile:
                     key = key + str(record[name]).zfill(field_len)
             keys[key] = rec_number
         return keys
-
-
-if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        file_io = FileIO(sys.argv[1])
-    else:
-        file_io = FileIO('example')
-    br_file = BRFile(file_io)
-    print(br_file.records)
